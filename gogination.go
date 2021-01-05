@@ -28,7 +28,7 @@ func NewBuilder(opts ...func(*Builder)) (*Builder, error) {
 func (builder *Builder) NextFilter(obj interface{}, filter bson.D, sort bson.D) (bson.D, error) {
 	v := reflect.ValueOf(obj)
 	if v.Kind() != reflect.Struct {
-		return nil, ErrExceptedStruct
+		return nil, ErrExpectedStruct
 	}
 	id := v.FieldByName(builder.structIdField)
 	if !id.IsValid() {
@@ -37,11 +37,8 @@ func (builder *Builder) NextFilter(obj interface{}, filter bson.D, sort bson.D) 
 	idFilter := bson.E{
 		Key: builder.mongoIdField,
 		Value: bson.E{
-			Key: "$oid",
-			Value: bson.E{
-				Key:   "$gt",
-				Value: id.Interface(),
-			},
+			Key:   "$gt",
+			Value: id.Interface(),
 		},
 	}
 	// build pagination filter which makes sure that the
@@ -72,13 +69,10 @@ func (builder *Builder) NextFilter(obj interface{}, filter bson.D, sort bson.D) 
 				// like id filter but considering
 				// the operator (which might be $lt)
 				flt := bson.E{
-					Key: "_id",
+					Key: builder.mongoIdField,
 					Value: bson.E{
-						Key: "$oid",
-						Value: bson.E{
-							Key:   op,
-							Value: id.Interface(),
-						},
+						Key:   op,
+						Value: id.Interface(),
 					},
 				}
 				// if the only sort string is id

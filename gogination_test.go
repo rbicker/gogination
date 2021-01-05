@@ -64,11 +64,8 @@ func TestBuilder_NextFilter(t *testing.T) {
 				bson.E{
 					Key: "_id",
 					Value: bson.E{
-						Key: "$oid",
-						Value: bson.E{
-							Key:   "$gt",
-							Value: "abc",
-						},
+						Key:   "$gt",
+						Value: "abc",
 					},
 				},
 			},
@@ -99,11 +96,8 @@ func TestBuilder_NextFilter(t *testing.T) {
 							bson.E{
 								Key: "_id",
 								Value: bson.E{
-									Key: "$oid",
-									Value: bson.E{
-										Key:   "$gt",
-										Value: "abc",
-									},
+									Key:   "$gt",
+									Value: "abc",
 								},
 							},
 						},
@@ -142,11 +136,8 @@ func TestBuilder_NextFilter(t *testing.T) {
 				bson.E{
 					Key: "_id",
 					Value: bson.E{
-						Key: "$oid",
-						Value: bson.E{
-							Key:   "$lt",
-							Value: "abc",
-						},
+						Key:   "$lt",
+						Value: "abc",
 					},
 				},
 			},
@@ -185,11 +176,8 @@ func TestBuilder_NextFilter(t *testing.T) {
 							bson.E{ // ... but greater id
 								Key: "_id",
 								Value: bson.E{
-									Key: "$oid",
-									Value: bson.E{
-										Key:   "$gt",
-										Value: "abc",
-									},
+									Key:   "$gt",
+									Value: "abc",
 								},
 							},
 						},
