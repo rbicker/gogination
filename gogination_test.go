@@ -63,9 +63,11 @@ func TestBuilder_NextFilter(t *testing.T) {
 			want: bson.D{
 				bson.E{
 					Key: "_id",
-					Value: bson.E{
-						Key:   "$gt",
-						Value: "abc",
+					Value: bson.D{
+						bson.E{
+							Key:   "$gt",
+							Value: "abc",
+						},
 					},
 				},
 			},
@@ -95,9 +97,11 @@ func TestBuilder_NextFilter(t *testing.T) {
 						bson.D{
 							bson.E{
 								Key: "_id",
-								Value: bson.E{
-									Key:   "$gt",
-									Value: "abc",
+								Value: bson.D{
+									bson.E{
+										Key:   "$gt",
+										Value: "abc",
+									},
 								},
 							},
 						},
@@ -135,9 +139,11 @@ func TestBuilder_NextFilter(t *testing.T) {
 			want: bson.D{
 				bson.E{
 					Key: "_id",
-					Value: bson.E{
-						Key:   "$lt",
-						Value: "abc",
+					Value: bson.D{
+						bson.E{
+							Key:   "$lt",
+							Value: "abc",
+						},
 					},
 				},
 			},
@@ -162,9 +168,11 @@ func TestBuilder_NextFilter(t *testing.T) {
 						bson.D{
 							bson.E{ // greater match for age
 								Key: "age",
-								Value: bson.E{
-									Key:   "$gt",
-									Value: 25,
+								Value: bson.D{
+									bson.E{
+										Key:   "$gt",
+										Value: 25,
+									},
 								},
 							},
 						},
@@ -175,9 +183,11 @@ func TestBuilder_NextFilter(t *testing.T) {
 							},
 							bson.E{ // ... but greater id
 								Key: "_id",
-								Value: bson.E{
-									Key:   "$gt",
-									Value: "abc",
+								Value: bson.D{
+									bson.E{
+										Key:   "$gt",
+										Value: "abc",
+									},
 								},
 							},
 						},

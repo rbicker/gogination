@@ -36,9 +36,11 @@ func (builder *Builder) NextFilter(obj interface{}, filter bson.D, sort bson.D) 
 	}
 	idFilter := bson.E{
 		Key: builder.mongoIdField,
-		Value: bson.E{
-			Key:   "$gt",
-			Value: id.Interface(),
+		Value: bson.D{
+			bson.E{
+				Key:   "$gt",
+				Value: id.Interface(),
+			},
 		},
 	}
 	// build pagination filter which makes sure that the
@@ -70,9 +72,11 @@ func (builder *Builder) NextFilter(obj interface{}, filter bson.D, sort bson.D) 
 				// the operator (which might be $lt)
 				flt := bson.E{
 					Key: builder.mongoIdField,
-					Value: bson.E{
-						Key:   op,
-						Value: id.Interface(),
+					Value: bson.D{
+						bson.E{
+							Key:   op,
+							Value: id.Interface(),
+						},
 					},
 				}
 				// if the only sort string is id
@@ -101,9 +105,11 @@ func (builder *Builder) NextFilter(obj interface{}, filter bson.D, sort bson.D) 
 			// (depending on sort direction)
 			next = append(next, bson.E{
 				Key: name,
-				Value: bson.E{
-					Key:   op,
-					Value: value,
+				Value: bson.D{
+					bson.E{
+						Key:   op,
+						Value: value,
+					},
 				},
 			})
 			// B) or it needs to be an exact match
